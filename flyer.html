@@ -22,20 +22,15 @@ html,body{margin:0;background:#ece8f1;font-family:"Segoe UI",Arial,sans-serif}
 .lead{max-width:790px;margin:22px 0 0;font-size:24px;line-height:1.42;color:#302a34}
 .effective{display:inline-flex;align-items:center;gap:12px;margin-top:20px;padding:11px 18px;border-radius:999px;background:linear-gradient(90deg,#7f35b2,#521380);color:#fff;font-size:17px;font-weight:800;box-shadow:0 10px 24px rgba(82,19,128,.18)}
 .effective .dot{width:10px;height:10px;border-radius:50%;background:#f75784;box-shadow:0 0 0 5px rgba(255,255,255,.16)}
-.policy-highlights{display:grid;grid-template-columns:1.2fr 1fr;gap:14px;margin-top:20px}
-.policy-highlight{display:flex;align-items:center;gap:14px;padding:16px 18px;border:1px solid #d8cae5;border-radius:18px;background:rgba(255,255,255,.94);color:#521380}
-.policy-highlight b{font-size:34px;line-height:1;white-space:nowrap}
-.policy-highlight span{font-size:16px;line-height:1.3}
-.policy-highlight strong{display:block;margin-bottom:3px;font-size:18px}
-.lower{display:grid;grid-template-columns:1.08fr .92fr;gap:26px;margin-top:24px;align-items:stretch}
+.lower{display:grid;grid-template-columns:1.08fr .92fr;gap:26px;margin-top:32px;align-items:stretch;flex:1}
 .panel{border:1px solid rgba(127,53,178,.16);border-radius:28px;background:rgba(255,255,255,.9);box-shadow:0 18px 48px rgba(70,30,100,.13);overflow:hidden}
 .benefits-panel{display:flex;flex-direction:column;padding:22px}
 .panel-label{margin:0 0 10px;font-size:15px;font-weight:900;letter-spacing:2.2px;color:#7f35b2;text-transform:uppercase}
-.benefits{display:grid;grid-template-columns:1fr;gap:8px}
+.benefits{display:grid;grid-template-columns:1fr;gap:10px;flex:1}
 .benefit{display:flex;align-items:center;gap:16px;min-height:72px;padding:11px 14px;border-radius:17px;background:linear-gradient(90deg,#f6effb,rgba(255,255,255,.86));border:1px solid #eadcf4}
 .icon{display:grid;place-items:center;flex:0 0 50px;width:50px;height:50px;border-radius:15px;background:linear-gradient(145deg,#7f35b2,#521380);color:#fff;font-size:25px;font-weight:900;box-shadow:0 8px 16px rgba(82,19,128,.18)}
 .benefit strong{display:block;font-size:22px;line-height:1.15;color:#521380}
-.contact{display:flex;flex:1;align-items:center;gap:15px;min-height:92px;margin-top:12px;padding:17px 16px;border-radius:18px;background:linear-gradient(120deg,#521380,#7f35b2);color:#fff}
+.contact{display:flex;align-items:center;gap:15px;min-height:110px;margin-top:12px;padding:17px 16px;border-radius:18px;background:linear-gradient(120deg,#521380,#7f35b2);color:#fff}
 .contact-icon{display:grid;place-items:center;flex:0 0 48px;width:48px;height:48px;border-radius:50%;background:#fff;color:#7f35b2;font-size:23px}
 .contact small{display:block;margin-bottom:3px;color:#e9d9f5;font-size:12px;font-weight:800;letter-spacing:1px;text-transform:uppercase}
 .contact strong{display:inline;color:#fff;font-size:18px}
@@ -43,12 +38,12 @@ html,body{margin:0;background:#ece8f1;font-family:"Segoe UI",Arial,sans-serif}
 .qr-area{padding:22px;text-align:center;display:flex;flex-direction:column}
 .qr-title{margin:0 0 11px;font-size:18px;font-weight:900;letter-spacing:2.5px;color:#7f35b2}
 .qr-card{display:flex;flex:1;flex-direction:column;justify-content:center;align-items:center;padding:14px 18px 16px;border-radius:20px;background:linear-gradient(160deg,#faf7fc,#fff);border:1px solid #eadcf4;text-decoration:none}
-.qr-card img{display:block;width:292px;height:292px;image-rendering:pixelated}
+.qr-card img{display:block;width:320px;height:320px;image-rendering:pixelated}
 .qr-card span{display:block;margin-top:11px;color:#521380;font-size:18px;font-weight:900}
 .qr-card em{display:block;margin-top:4px;color:#725f80;font-size:13px;font-style:normal}
 .disclaimer{margin-top:18px;padding:15px 18px;border-left:6px solid #d124b8;border-radius:12px;background:rgba(246,238,251,.96);color:#4d3261;font-size:15px;line-height:1.35}
 .disclaimer strong{color:#7b086b}
-.footer{margin-top:auto;display:flex;align-items:center;justify-content:space-between;border-top:1px solid #d8cae5;padding-top:15px;font-size:14px;color:#786685}
+.footer{margin-top:24px;display:flex;align-items:center;justify-content:space-between;border-top:1px solid #d8cae5;padding-top:15px;font-size:14px;color:#786685}
 .cta{font-weight:900;color:#6f2c91;letter-spacing:.4px}
 @media(max-width:900px){body{overflow-x:auto}}
 @media print{body{background:#fff}.flyer{margin:0}}
@@ -70,10 +65,6 @@ html,body{margin:0;background:#ece8f1;font-family:"Segoe UI",Arial,sans-serif}
       <h2 class="subheadline">Conoce la nueva política EPS de Abbott</h2>
       <p class="lead">Calcula tu aporte, compara tus opciones y revisa los requisitos para afiliar a tu familia.</p>
       <div class="effective"><span class="dot"></span>Política aplicable desde septiembre de 2026</div>
-      <div class="policy-highlights">
-        <div class="policy-highlight"><b>70%</b><span><strong>Aporte Abbott EPS sin tope</strong>Para titular solo o titular + 1 hijo de 18 a 28 años, en los tres planes.</span></div>
-        <div class="policy-highlight"><b>100%</b><span><strong>Oncológico cubierto por Abbott</strong>Para todos los integrantes de tu grupo familiar, incluido IGV.</span></div>
-      </div>
     </section>
 
     <section class="lower">
