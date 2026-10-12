@@ -183,12 +183,14 @@ function calc(plan = state.plan) {
   const family = p.prices[state.family];
   const adult = p.adult * state.children;
   const premium = family + adult;
-  // El beneficio se calcula siempre sobre el Plan Base, hasta titular + 1.
-  // Solo T0 + exactamente un hijo mayor permite superar el tope.
-  const uncapped = state.family === "solo" && state.children === 1;
-  const baseReference = uncapped
-    ? DATA.base.prices.solo + DATA.base.adult
-    : DATA.base.prices[familyDependents() === 0 ? "solo" : "dep1"];
+  // T0 sin dependientes: Abbott cubre 70% del plan seleccionado, sin tope.
+  // Las demás composiciones conservan el beneficio sobre el Plan Base.
+  const titularSolo = state.family === "solo" && state.children === 0;
+  const adultException = state.family === "solo" && state.children === 1;
+  const uncapped = titularSolo || adultException;
+  const baseReference = titularSolo ? p.prices.solo
+    : adultException ? DATA.base.prices.solo + DATA.base.adult
+    : DATA.base.prices.dep1;
   const company = uncapped ? baseReference * 0.70 : Math.min(baseReference * 0.70, CAP);
   const employee = Math.max(0, premium - company);
   const oncologyPremiums = state.oncology ? state.oncologyAges.map(age => age && ONCOLOGY[age] ? ONCOLOGY[age].price * 1.18 : 0) : [];
@@ -196,7 +198,7 @@ function calc(plan = state.plan) {
   // Abbott asume el 100% del oncológico de todos los integrantes, incluido IGV.
   const oncologyCompany = oncologyTotal;
   const oncology = Math.max(0, oncologyTotal - oncologyCompany);
-  return { p, family, adult, premium, baseReference, company, employee, uncapped, oncology, oncologyTotal, oncologyCompany, combined: employee + oncology };
+  return { p, family, adult, premium, baseReference, company, employee, titularSolo, uncapped, oncology, oncologyTotal, oncologyCompany, combined: employee + oncology };
 }
 
 function renderMemberAges() {
@@ -217,7 +219,7 @@ function render() {
   $("adultPrice").textContent = fmt(r.adult);
   $("totalPrice").textContent = fmt(r.premium);
   $("employee").textContent = fmt(r.employee);
-  $("epsPolicyDetail").textContent = r.uncapped ? "70% del Plan Base: titular + 1 hijo mayor, sin tope" : "Abbott aporta 70% del Plan Base, hasta titular + 1";
+  $("epsPolicyDetail").textContent = r.titularSolo ? "Abbott aporta 70% del plan seleccionado para titular solo, sin tope" : r.uncapped ? "70% del Plan Base: titular + 1 hijo mayor, sin tope" : "Abbott aporta 70% del Plan Base, hasta titular + 1";
   $("oncologyResult").hidden = !state.oncology;
   $("oncologyPrice").textContent = fmt(r.oncology);
   const dependentCount = familyDependents();
